@@ -79,6 +79,9 @@ const Search = () => {
         ? [...prevDepartment, department]
         : prevDepartment.filter((prevDepartments) => prevDepartments !== department)
     );
+
+    console.log(department);
+    
     
   };
 
