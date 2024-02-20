@@ -24,10 +24,10 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
 
   const {
     watch,
-    register,
+    // register,
     handleSubmit,
     setValue,
-    formState: { errors },
+    // formState: { errors },
   } = useForm<GuestInfoFormData>({
     defaultValues: {
       checkIn: search.checkIn,
