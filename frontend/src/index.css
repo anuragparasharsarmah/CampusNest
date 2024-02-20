@@ -1,0 +1,26 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.comp {
+    background: transparent !important;
+    color: #fff !important;
+    z-index: 9999;
+}
+
+.gg {
+    z-index: -1;
+}
+
+.placeholder-black::placeholder {
+    color: black;
+}
+
+.boxs{
+    box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
+}
+
+.boxss{
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
