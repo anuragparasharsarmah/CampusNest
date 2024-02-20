@@ -24,7 +24,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
 
   const {
     watch,
-    // register,
+    // register,klklkl
     handleSubmit,
     setValue,
     // formState: { errors },
