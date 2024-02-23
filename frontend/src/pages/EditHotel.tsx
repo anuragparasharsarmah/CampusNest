@@ -19,12 +19,13 @@ const EditHotel = () => {
   const { mutate, isLoading } = useMutation(apiClient.updateMyHotelById, {
     onSuccess: () => {
       showToast({ message: "Hotel Saved!", type: "SUCCESS" });
+      window.location.href= "/my-hotels";
     },
     onError: () => {
       showToast({ message: "Error Saving Hotel", type: "ERROR" });
     },
   });
-
+    
   const handleSave = (hotelFormData: FormData) => {
     mutate(hotelFormData);
   };
