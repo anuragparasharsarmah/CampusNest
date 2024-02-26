@@ -8,7 +8,7 @@ type Props = {
   numberOfNights: number;
   hotel: HotelType;
 };
-
+//hello
 const BookingDetailsSummary = ({
   checkIn,
   checkOut,
