@@ -77,11 +77,10 @@ const Search = () => {
     setSelectedDepartment((prevDepartment) =>
       event.target.checked
         ? [...prevDepartment, department]
-        : prevDepartment.filter((prevDepartments) => prevDepartments !== department)
+        : prevDepartment.filter((prevDepartment) => prevDepartment !== department)
     );
 
-    console.log(department);
-    
+    console.log(department); 
     
   };
 
