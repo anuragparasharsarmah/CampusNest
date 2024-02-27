@@ -52,7 +52,7 @@ const SearchResultsCard = ({ hotel }: Props) => {
             <span className="font-bold">₹{hotel.pricePerNight*30} Per Month</span>
             <Link
               to={`/detail/${hotel._id}`}
-              className="bg-blue-600 text-white h-full p-2 font-bold text-sm max-w-fit hover:bg-blue-500 rounded-lg"
+              className="bg-blue-600 text-white h-full p-2 font-bold text-sm max-w-fit hover:bg-blue-500 rounded-lg boxs"
             >
               View More
             </Link>
