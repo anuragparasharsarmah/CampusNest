@@ -64,6 +64,12 @@ const MyHotels = () => {
               >
                 Edit
               </Link>
+              <Link
+                to={`/edit-hotel/${hotel._id}`}
+                className="flex bg-red-600 text-white ml-2 text-xl font-bold p-2 hover:bg-blue-500 rounded-lg boxs" style={{ fontFamily: "Segoe UI" }}
+              >
+                Delete
+              </Link>
             </span>
           </div>
         ))} 
