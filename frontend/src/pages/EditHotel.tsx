@@ -14,7 +14,7 @@ const EditHotel = () => {
     {
       enabled: !!hotelId,
     }
-  );
+  ); 
 
   const { mutate, isLoading } = useMutation(apiClient.updateMyHotelById, {
     onSuccess: () => {

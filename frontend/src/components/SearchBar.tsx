@@ -27,6 +27,15 @@ const SearchBar = () => {
     navigate("/search");
   };
 
+  const handleClear = () => {
+    // Reset all input values to their initial state or to empty values
+    setDestination("");
+    setCheckIn(new Date());
+    setCheckOut(new Date());
+    setAdultCount(1);
+    setChildCount(1);
+  };
+
   const minDate = new Date();
   const maxDate = new Date();
   maxDate.setFullYear(maxDate.getFullYear() + 1);
@@ -105,7 +114,7 @@ const SearchBar = () => {
         <button className="w-1/2 bg-blue-600 text-white h-5/6 p-2 font-bold text-xl hover:bg-blue-500 rounded-lg boxs">
           Search
         </button>
-        <button type="reset" className="w-1/2 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500 rounded-lg boxs">
+        <button type="button" onClick={handleClear} className="w-1/2 bg-red-600 text-white h-full p-2 font-bold text-xl hover:bg-red-500 rounded-lg boxs">
           Clear
         </button>
       </div>

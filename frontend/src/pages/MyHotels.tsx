@@ -66,7 +66,7 @@ const MyHotels = () => {
               </Link>
             </span>
           </div>
-        ))}
+        ))} 
       </div>
     </div>
   );
