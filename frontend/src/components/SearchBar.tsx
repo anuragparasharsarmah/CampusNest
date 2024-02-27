@@ -119,7 +119,7 @@ const SearchBar = () => {
         </button>
       </div>
     </form>
-  );
+  ); 
 };
 
 export default SearchBar;

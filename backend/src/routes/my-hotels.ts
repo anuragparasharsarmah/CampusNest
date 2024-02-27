@@ -3,7 +3,7 @@ import multer from "multer";
 import cloudinary from "cloudinary";
 import Hotel from "../models/hotel";
 import verifyToken from "../middleware/auth";
-import { body } from "express-validator";
+import { body, param, validationResult } from "express-validator";
 import { HotelType } from "../shared/types";
 
 const router = express.Router();
@@ -116,6 +116,30 @@ router.put(
       res.status(201).json(hotel);
     } catch (error) {
       res.status(500).json({ message: "Something went throw" });
+    }
+  }
+);
+
+router.delete(
+  "/:id",
+  [param("id").notEmpty().withMessage("Hotel ID is required")],
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const id = req.params.id.toString();
+
+    try {
+      const deletedHotel = await Hotel.findByIdAndDelete(id);
+      if (!deletedHotel) {
+        return res.status(404).json({ message: "Hotel not found" });
+      }
+      res.json({ message: "Hotel deleted successfully" });
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: "Error deleting hotel" });
     }
   }
 );

@@ -1,17 +1,30 @@
-import { useQuery } from "react-query";
+import { useQuery, useMutation } from "react-query";
 import { Link } from "react-router-dom";
 import * as apiClient from "../api-client";
 import { BsBuilding, BsMap } from "react-icons/bs";
 import { BiArea, BiMoney, BiStar } from "react-icons/bi";
 
 const MyHotels = () => {
-  const { data: hotelData } = useQuery(
+  const { data: hotelData, refetch } = useQuery(
     "fetchMyHotels",
     apiClient.fetchMyHotels,
     {
       onError: () => {},
     }
   );
+
+  const deleteHotelMutation = useMutation(apiClient.deleteHotel, {
+    onSuccess: () => {
+      refetch();
+    },
+  });
+
+  const handleDeleteHotel = (hotelId: string) => {
+    console.log("Deleting hotel with ID:", hotelId);
+    if (window.confirm("Are you sure you want to delete this hotel?")) {
+      deleteHotelMutation.mutate(hotelId);
+    }
+  };
 
   if (!hotelData) {
     return <span>No Hostels found</span>;
@@ -31,6 +44,7 @@ const MyHotels = () => {
       <div className="grid grid-cols-1 gap-8 ">
         {hotelData.map((hotel) => (
           <div
+            key={hotel._id}
             data-testid="hotel-card"
             className="flex flex-col justify-between border border-slate-300 rounded-lg p-8 gap-5"
           >
@@ -64,12 +78,12 @@ const MyHotels = () => {
               >
                 Edit
               </Link>
-              <Link
-                to={`/edit-hotel/${hotel._id}`}
-                className="flex bg-red-600 text-white ml-2 text-xl font-bold p-2 hover:bg-blue-500 rounded-lg boxs" style={{ fontFamily: "Segoe UI" }}
+              <button
+                className="flex bg-red-600 text-white ml-2 text-xl font-bold p-2 hover:bg-red-500 rounded-lg boxs" style={{ fontFamily: "Segoe UI" }}
+                onClick={() => handleDeleteHotel(hotel._id)}
               >
                 Delete
-              </Link>
+              </button>
             </span>
           </div>
         ))} 

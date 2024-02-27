@@ -19,6 +19,24 @@ export const fetchCurrentUser = async (): Promise<UserType> => {
   return response.json();
 };
 
+/// Function to delete a hotel by its ID
+export const deleteHotel = async (hotelId: string) => {
+  try {   
+    const response = await fetch(`${API_BASE_URL}/api/my-hotels/${hotelId}`, {
+      method: "DELETE",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to delete hotel");
+    }
+
+    return response.json(); // Return any data from the response if needed
+  } catch (error) { // Catch any type of error
+    throw new Error("Error deleting hotel: "); // Convert 'error' to string
+  }
+};
+
 export const register = async (formData: RegisterFormData) => {
   const response = await fetch(`${API_BASE_URL}/api/users/register`, {
     method: "POST",
