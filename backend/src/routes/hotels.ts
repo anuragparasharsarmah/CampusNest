@@ -99,13 +99,24 @@ router.post(
     }
 
     const totalCost = hotel.pricePerNight * numberOfNights;
-
+    
     const paymentIntent = await stripe.paymentIntents.create({
       amount: totalCost * 100,
-      currency: "usd",
+      description: "some description",      
+      currency: "inr",
+      shipping: {
+        name: 'Jenny Rosen',
+        address: {
+          line1: '510 Townsend St',
+          postal_code: '98140',
+          city: 'San Francisco',
+          state: 'CA',
+          country: 'US',
+        },
+      },
       metadata: {
-        hotelId,
-        userId: req.userId,
+      hotelId,
+      userId: req.userId,
       },
     });
 

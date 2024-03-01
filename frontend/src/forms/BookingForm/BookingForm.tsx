@@ -66,20 +66,34 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
   });
 
   const onSubmit = async (formData: BookingFormData) => {
+    console.log("Form submitted with data:", formData);
+  
     if (!stripe || !elements) {
+      console.log("Stripe or elements not available");
       return;
     }
-
+  
+    console.log("Confirming card payment with Stripe...");
+  
     const result = await stripe.confirmCardPayment(paymentIntent.clientSecret, {
       payment_method: {
         card: elements.getElement(CardElement) as StripeCardElement,
       },
     });
-
-    if (result.paymentIntent?.status === "succeeded") {
+  
+    console.log("Stripe confirmation result:", result);
+  
+    if (result.error) {
+      console.log("Payment error:", JSON.stringify(result.error, null, 2).replace(/\"/g, '').replace(/,/g, ',\n'));
+      console.log("Payment failed or not successful. No booking made.");
+    } else if (result.paymentIntent?.status === "succeeded") {
+      console.log("Payment successful. Booking room...");
       bookRoom({ ...formData, paymentIntentId: result.paymentIntent.id });
+    } else {
+      console.log("Payment status unknown. No booking made.");
     }
   };
+  
 
   return (
     <form

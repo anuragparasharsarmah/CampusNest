@@ -62,7 +62,7 @@ test("should book hotel", async ({ page }) => {
     .fill("4242424242424242");
   await stripeFrame.locator('[placeholder="MM / YY"]').fill("04/30");
   await stripeFrame.locator('[placeholder="CVC"]').fill("242");
-  await stripeFrame.locator('[placeholder="ZIP"]').fill("24225");
+  await stripeFrame.locator('[placeholder="ZIP"]').fill("242255");
 
   await page.getByRole("button", { name: "Confirm Booking" }).click();
   await expect(page.getByText("Booking Saved!")).toBeVisible();
