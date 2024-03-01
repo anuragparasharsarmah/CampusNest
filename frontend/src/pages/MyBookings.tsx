@@ -39,10 +39,7 @@ const MyBookings = () => {
                   </span>
                 </div>
                 <div>
-                  <span className="font-bold mr-2">Guests:</span>
-                  <span>
-                    {booking.adultCount} Distance, {booking.childCount} Beds
-                  </span>
+                  <span className="font-bold mr-2">Guests: 1 Student ({booking.childCount} sharing)</span>
                 </div>
               </div>
             ))}

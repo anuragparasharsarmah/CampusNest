@@ -43,6 +43,7 @@ const BookingForm = ({ currentUser, paymentIntent }: Props) => {
     {
       onSuccess: () => {
         showToast({ message: "Booking Saved!", type: "SUCCESS" });
+        window.location.href= "/my-bookings";
       },
       onError: () => {
         showToast({ message: "Error saving booking", type: "ERROR" });

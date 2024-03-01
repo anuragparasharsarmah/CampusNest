@@ -59,7 +59,7 @@ const Header = () => {
                   className="flex items-center text-white px-3 font-bold hover:bg-blue-600 rounded-lg"
                   to="/my-hotels" style={{ fontFamily: 'Segoe UI' }}
                 >
-                  My Hotels
+                  My Hostels
                 </Link>
                 <SignOutButton />
               </>
