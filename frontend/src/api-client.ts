@@ -33,7 +33,7 @@ export const deleteHotel = async (hotelId: string) => {
 
     return response.json(); // Return any data from the response if needed
   } catch (error) { // Catch any type of error
-    throw new Error("Error deleting hotel: "); // Convert 'error' to string
+    throw new Error("Error deleting hotel"); // Convert 'error' to string
   }
 };
 
