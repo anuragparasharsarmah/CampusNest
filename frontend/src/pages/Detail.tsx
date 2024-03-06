@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import * as apiClient from "./../api-client";
 import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
+import MapSection from "./MapSection";
 
 const Detail = () => {
   const { hotelId } = useParams();
@@ -49,15 +50,12 @@ const Detail = () => {
           </div>
         ))}
       </div>
-
-      {/* <div className="grid grid-cols-1 lg:grid-cols-4 gap-2">
-        {hotel.department.map((departments) => (
-          <div className="border border-slate-300 rounded-sm p-3">
-            {departments}
-          </div>
-        ))}
-      </div> */}
-
+      <div className="h-[400px]">
+        <MapSection
+          latitude={hotel.latitude}
+          longitude={hotel.longitude}
+        />
+      </div>
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
         <div className="whitespace-pre-line">{hotel.description}</div>
         <div className="h-fit">

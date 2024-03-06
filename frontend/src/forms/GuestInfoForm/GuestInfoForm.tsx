@@ -65,6 +65,7 @@ const GuestInfoForm = ({ hotelId, pricePerNight }: Props) => {
     );
     navigate(`/hotel/${hotelId}/booking`);
   };
+  
 
   return (
     <div className="flex flex-col p-4 bg-blue-200 gap-4 rounded-lg ml-5">

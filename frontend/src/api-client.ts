@@ -155,6 +155,8 @@ export type SearchParams = {
   checkOut?: string;
   adultCount?: string;
   childCount?: string;
+  latitude?:string;
+  longitude?:string;
   page?: string;
   facilities?: string[];
   department?: string[];
@@ -173,8 +175,9 @@ export const searchHotels = async (
   queryParams.append("checkOut", searchParams.checkOut || "");
   queryParams.append("adultCount", searchParams.adultCount || "");
   queryParams.append("childCount", searchParams.childCount || "");
+  queryParams.append("latitude", searchParams.latitude || "");
+  queryParams.append("longitude", searchParams.longitude || "");
   queryParams.append("page", searchParams.page || "");
-
   queryParams.append("maxPrice", searchParams.maxPrice || "");
   queryParams.append("sortOption", searchParams.sortOption || "");
 

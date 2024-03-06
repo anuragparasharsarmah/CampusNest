@@ -22,6 +22,8 @@ export type HotelType = {
   starRating: number;
   imageUrls: string[];
   lastUpdated: Date;
+  latitude: number;
+  longitude: number;
   bookings: BookingType[];
 };
 

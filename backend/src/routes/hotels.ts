@@ -209,6 +209,18 @@ const constructSearchQuery = (queryParams: any) => {
     };
   }
 
+  if (queryParams.latitude) {
+    constructedQuery.latitude = {
+      $gte: parseInt(queryParams.latitude),
+    };
+  }
+
+  if (queryParams.longitude) {
+    constructedQuery.longitude = {
+      $gte: parseInt(queryParams.longitude),
+    };
+  }
+
   if (queryParams.facilities) {
     constructedQuery.facilities = {
       $all: Array.isArray(queryParams.facilities)
