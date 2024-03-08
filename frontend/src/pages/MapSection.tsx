@@ -1,5 +1,7 @@
 import React, { useEffect, useRef } from 'react';
 
+const map_key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
+
 declare global {
   interface Window {
     google?: any;
@@ -30,9 +32,9 @@ const MapSection = ({ latitude, longitude, ...rest }: MapSectionProps) => {
       });
     };
 
-    if (!scriptLoadedRef.current) {
+    if (!scriptLoadedRef.current) {    
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC9iV2P2e2OcJHvwUiYWsUazmYHaXXRZ6E`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${map_key}`;
       script.async = true;
       document.body.appendChild(script);
 

@@ -32,11 +32,12 @@ const MapSection = ({ onMarkerDrag, ...rest }: MapSectionProps) => {
  // Default coordinates for Bangalore
  const defaultLatitude = 12.9716;
  const defaultLongitude = 77.5946;
+ const map_key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
  useEffect(() => {
     if (!window.google) {
       const script = document.createElement('script');
-      script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyC9iV2P2e2OcJHvwUiYWsUazmYHaXXRZ6E&libraries=places`;
+      script.src = `https://maps.googleapis.com/maps/api/js?key=${map_key}&libraries=places`;
       script.async = true;
       document.body.appendChild(script);
 
