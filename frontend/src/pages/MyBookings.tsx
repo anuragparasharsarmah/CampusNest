@@ -64,7 +64,7 @@ const MyBookings = () => {
                     Guests: 1 Student ({booking.childCount} sharing)
                   </span>
                 </div>
-                <div>
+                <div className="mt-1">
                   <input
                     type="text"
                     className="border rounded py-1 px-2 font-normal review-input"
