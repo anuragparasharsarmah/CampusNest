@@ -1,11 +1,20 @@
 import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
+import { useState } from "react";
 
 const MyBookings = () => {
-  const { data: hotels } = useQuery(
-    "fetchMyBookings",
-    apiClient.fetchMyBookings
-  );
+  const { data: hotels } = useQuery("fetchMyBookings", apiClient.fetchMyBookings);
+  const [newReview, setNewReview] = useState("");
+
+  const handleReviewSubmit = async (hotelId: string) => {
+    try {
+      await apiClient.submitReview(hotelId, newReview);
+      setNewReview("");
+      // You may want to refetch the hotel data after submitting a review
+    } catch (error) {
+      console.error("Error submitting review:", error);
+    }
+  };
 
   if (!hotels || hotels.length === 0) {
     return <span>No bookings found</span>;
@@ -34,15 +43,29 @@ const MyBookings = () => {
                 <div>
                   <span className="font-bold mr-2">Dates: </span>
                   <span>
-                    {new Date(booking.checkIn).toDateString()} -
+                    {new Date(booking.checkIn).toDateString()} -{" "}
                     {new Date(booking.checkOut).toDateString()}
                   </span>
                 </div>
                 <div>
-                  <span className="font-bold mr-2">Guests: 1 Student ({booking.childCount} sharing)</span>
+                  <span className="font-bold mr-2">
+                    Guests: 1 Student ({booking.childCount} sharing)
+                  </span>
                 </div>
               </div>
             ))}
+            <div>
+              <input
+                type="text"
+                className="border rounded py-1 px-2 font-normal review-input"
+                placeholder="Leave a review"
+                value={newReview}
+                onChange={(e) => setNewReview(e.target.value)}
+              />
+              <button onClick={() => handleReviewSubmit(hotel._id)} className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-sm ml-2 disabled:bg-gray-500 rounded-lg boxs">
+                Submit Review
+              </button>
+            </div>
           </div>
         </div>
       ))}

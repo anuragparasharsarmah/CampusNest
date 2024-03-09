@@ -261,6 +261,22 @@ export const createRoomBooking = async (formData: BookingFormData) => {
   }
 };
 
+export const submitReview = async (hotelId: string, reviewText: string) => {
+  const response = await fetch(`${API_BASE_URL}/api/reviews/${hotelId}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      // Include any additional headers if needed, e.g., Authorization header for authentication
+    },
+    body: JSON.stringify({ text: reviewText }),
+    credentials: "include", // Add this line to include cookies for authenticated requests
+  });
+
+  if (!response.ok) {
+    throw new Error("Failed to submit review");
+  }
+};
+
 export const fetchMyBookings = async (): Promise<HotelType[]> => {
   const response = await fetch(`${API_BASE_URL}/api/my-bookings`, {
     credentials: "include",

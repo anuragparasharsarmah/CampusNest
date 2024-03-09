@@ -187,6 +187,25 @@ router.post(
   }
 );
 
+router.get("/:id", async (req: Request, res: Response) => {
+  const id = req.params.id.toString();
+
+  try {
+    const hotel = await Hotel.findById(id)
+      .populate("reviews.userId", "firstName lastName") // Populate user details for reviews
+      .lean(); // Convert to plain JavaScript object
+
+    if (!hotel) {
+      return res.status(404).json({ message: "Hotel not found" });
+    }
+
+    res.json(hotel);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error fetching hotel" });
+  }
+});
+
 const constructSearchQuery = (queryParams: any) => {
   let constructedQuery: any = {};
 

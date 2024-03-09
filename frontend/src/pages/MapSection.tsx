@@ -54,7 +54,8 @@ const MapSection = ({ latitude, longitude, ...rest }: MapSectionProps) => {
   }, [latitude, longitude]);
 
   return (
-    <div {...rest}>
+    <div {...rest} className="reviews-container space-y-6">
+      <h2 className="reviews-heading text-2xl font-bold">Location</h2>
       <div className="h-96 w-full bg-gray-300" ref={mapRef}></div>
     </div>
   );

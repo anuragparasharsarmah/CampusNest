@@ -30,7 +30,15 @@ const hotelSchema = new mongoose.Schema<HotelType>({
   lastUpdated: { type: Date, required: true },
   latitude: { type: Number, required: false },
   longitude: { type: Number, required: false },
-  bookings: [bookingSchema],  
+  bookings: [bookingSchema],
+  reviews: [
+    {
+      userId: { type: String, required: true },
+      userName: { type: String, required: true },
+      text: { type: String, required: true },
+      createdAt: { type: Date, required: true, default: Date.now },
+    },
+  ], 
 });
 
 const Hotel = mongoose.model<HotelType>("Hotel", hotelSchema);

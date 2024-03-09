@@ -4,6 +4,7 @@ import * as apiClient from "./../api-client";
 import { AiFillStar } from "react-icons/ai";
 import GuestInfoForm from "../forms/GuestInfoForm/GuestInfoForm";
 import MapSection from "./MapSection";
+import Reviews from './Reviews';
 
 const Detail = () => {
   const { hotelId } = useParams();
@@ -50,11 +51,14 @@ const Detail = () => {
           </div>
         ))}
       </div>
-      <div className="h-[400px]">
+      <div className="h-[400px] margin">
         <MapSection
           latitude={hotel.latitude}
           longitude={hotel.longitude}
         />
+      </div>
+      <div className="reviews-section mb-6"> {/* Add margin-bottom */}
+        <Reviews reviews={hotel.reviews} />
       </div>
       <div className="grid grid-cols-1 lg:grid-cols-[2fr_1fr]">
         <div className="whitespace-pre-line">{hotel.description}</div>
@@ -65,6 +69,7 @@ const Detail = () => {
           />
         </div>
       </div>
+      
     </div>
   );
 };

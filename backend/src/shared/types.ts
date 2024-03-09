@@ -6,6 +6,13 @@ export type UserType = {
   lastName: string;
 };
 
+export type ReviewType = {
+  userId: string;
+  userName: string;
+  text: string;
+  createdAt: Date;
+};
+
 export type HotelType = {
   _id: string;
   userId: string;
@@ -25,6 +32,7 @@ export type HotelType = {
   latitude: number;
   longitude: number;
   bookings: BookingType[];
+  reviews: ReviewType[];
 };
 
 export type BookingType = {
