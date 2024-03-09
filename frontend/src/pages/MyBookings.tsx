@@ -2,14 +2,26 @@ import { useQuery } from "react-query";
 import * as apiClient from "../api-client";
 import { useState } from "react";
 
+interface ReviewInputs {
+  [hotelId: string]: string | undefined;
+}
+
 const MyBookings = () => {
   const { data: hotels } = useQuery("fetchMyBookings", apiClient.fetchMyBookings);
-  const [newReview, setNewReview] = useState("");
+
+  // Maintain separate state for each booking's review input
+  const [reviews, setReviews] = useState<ReviewInputs>({});
+
+  const handleReviewChange = (hotelId: string, value: string) => {
+    setReviews({ ...reviews, [hotelId]: value });
+  };
 
   const handleReviewSubmit = async (hotelId: string) => {
+    const newReview = reviews[hotelId] || ""; // Get review for this specific hotel
+
     try {
       await apiClient.submitReview(hotelId, newReview);
-      setNewReview("");
+      setReviews({ ...reviews, [hotelId]: "" }); // Clear review input after submission
       // You may want to refetch the hotel data after submitting a review
     } catch (error) {
       console.error("Error submitting review:", error);
@@ -24,7 +36,7 @@ const MyBookings = () => {
     <div className="space-y-5">
       <h1 className="text-3xl font-bold">My Bookings</h1>
       {hotels.map((hotel) => (
-        <div className="grid grid-cols-1 lg:grid-cols-[1fr_3fr] border border-slate-300 rounded-lg p-8 gap-5">
+        <div key={hotel._id} className="grid grid-cols-1 lg:grid-cols-[1fr_3fr] border border-slate-300 rounded-lg p-8 gap-5">
           <div className="lg:w-full lg:h-[250px]">
             <img
               src={hotel.imageUrls[0]}
@@ -39,7 +51,7 @@ const MyBookings = () => {
               </div>
             </div>
             {hotel.bookings.map((booking) => (
-              <div>
+              <div key={booking._id}>
                 <div>
                   <span className="font-bold mr-2">Dates: </span>
                   <span>
@@ -52,20 +64,20 @@ const MyBookings = () => {
                     Guests: 1 Student ({booking.childCount} sharing)
                   </span>
                 </div>
+                <div>
+                  <input
+                    type="text"
+                    className="border rounded py-1 px-2 font-normal review-input"
+                    placeholder="Leave a review"
+                    value={reviews[hotel._id] || ""} // Use specific review value for this hotel
+                    onChange={(e) => handleReviewChange(hotel._id, e.target.value)}
+                  />
+                  <button onClick={() => handleReviewSubmit(hotel._id)} className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-sm ml-2 disabled:bg-gray-500 rounded-lg boxs">
+                    Submit Review
+                  </button>
+                </div>
               </div>
             ))}
-            <div>
-              <input
-                type="text"
-                className="border rounded py-1 px-2 font-normal review-input"
-                placeholder="Leave a review"
-                value={newReview}
-                onChange={(e) => setNewReview(e.target.value)}
-              />
-              <button onClick={() => handleReviewSubmit(hotel._id)} className="bg-blue-600 text-white p-2 font-bold hover:bg-blue-500 text-sm ml-2 disabled:bg-gray-500 rounded-lg boxs">
-                Submit Review
-              </button>
-            </div>
           </div>
         </div>
       ))}
