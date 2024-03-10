@@ -26,8 +26,8 @@ const MapSection = ({ onMarkerDrag, ...rest }: MapSectionProps) => {
  const searchInputRef = useRef<HTMLInputElement>(null);
  const { watch } = useFormContext<HotelFormData>();
  const [latitude, longitude] = watch(['latitude', 'longitude']);
- const [map, setMap] = useState<google.maps.Map | null>(null);
- const [marker, setMarker] = useState<google.maps.Marker | null>(null);
+ const [setMap] = useState<google.maps.Map | null>(null);
+ const [setMarker] = useState<google.maps.Marker | null>(null);
 
  // Default coordinates for Bangalore
  const defaultLatitude = 12.9716;
