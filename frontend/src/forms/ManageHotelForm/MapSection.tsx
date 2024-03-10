@@ -1,40 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { HotelFormData } from './ManageHotelForm';
 
 declare global {
- interface Window {
+  interface Window {
     google?: any;
- }
+  }
 }
 
 type MapSectionProps = React.ComponentProps<'div'> & {
- onMarkerDrag: (latitude: number, longitude: number) => void;
+  onMarkerDrag: (latitude: number, longitude: number) => void;
 };
 
 interface Place {
-    geometry: {
-       location: {
-         lat: () => number;
-         lng: () => number;
-       };
+  geometry: {
+    location: {
+      lat: () => number;
+      lng: () => number;
     };
-   }
+  };
+}
 
 const MapSection = ({ onMarkerDrag, ...rest }: MapSectionProps) => {
- const mapRef = useRef<HTMLDivElement>(null);
- const searchInputRef = useRef<HTMLInputElement>(null);
- const { watch } = useFormContext<HotelFormData>();
- const [latitude, longitude] = watch(['latitude', 'longitude']);
- const [setMap] = useState<google.maps.Map | null>(null);
- const [setMarker] = useState<google.maps.Marker | null>(null);
+  const mapRef = useRef<HTMLDivElement>(null);
+  const searchInputRef = useRef<HTMLInputElement>(null);
+  const { watch } = useFormContext<HotelFormData>();
+  const [latitude, longitude] = watch(['latitude', 'longitude']);
+  const defaultLatitude = 12.9716;
+  const defaultLongitude = 77.5946;
+  const map_key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
 
- // Default coordinates for Bangalore
- const defaultLatitude = 12.9716;
- const defaultLongitude = 77.5946;
- const map_key = import.meta.env.VITE_GOOGLE_MAPS_API_KEY || "";
-
- useEffect(() => {
+  useEffect(() => {
     if (!window.google) {
       const script = document.createElement('script');
       script.src = `https://maps.googleapis.com/maps/api/js?key=${map_key}&libraries=places`;
@@ -47,9 +43,9 @@ const MapSection = ({ onMarkerDrag, ...rest }: MapSectionProps) => {
     } else {
       initMap();
     }
- }, []);
+  }, []);
 
- const initMap = () => {
+  const initMap = () => {
     if (!mapRef.current) return;
 
     const newMap = new window.google.maps.Map(mapRef.current, {
@@ -57,15 +53,11 @@ const MapSection = ({ onMarkerDrag, ...rest }: MapSectionProps) => {
       zoom: 12,
     });
 
-    setMap(newMap);
-
     const newMarker = new window.google.maps.Marker({
       position: { lat: latitude || defaultLatitude, lng: longitude || defaultLongitude },
       map: newMap,
       draggable: true,
     });
-
-    setMarker(newMarker);
 
     newMarker.addListener('dragend', () => {
       const newLatitude = newMarker.getPosition()?.lat() || defaultLatitude;
@@ -91,9 +83,9 @@ const MapSection = ({ onMarkerDrag, ...rest }: MapSectionProps) => {
         onMarkerDrag(places[0].geometry.location.lat(), places[0].geometry.location.lng());
       });
     }
- };
+  };
 
- return (
+  return (
     <div {...rest}>
       <h2 className="text-2xl font-bold mb-3">Location</h2>
       <input
@@ -104,7 +96,7 @@ const MapSection = ({ onMarkerDrag, ...rest }: MapSectionProps) => {
       />
       <div className="h-96 w-full bg-gray-300" ref={mapRef}></div>
     </div>
- );
+  );
 };
 
 export default MapSection;
