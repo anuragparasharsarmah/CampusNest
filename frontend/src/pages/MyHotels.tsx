@@ -60,7 +60,7 @@ const MyHotels = () => {
                 {hotel.type}
               </div>
               <div className="border border-slate-300 rounded-sm p-3 flex items-center" style={{ fontFamily: "Segoe UI" }}>
-                <BiMoney className="mr-4" />₹{hotel.pricePerNight}
+                <BiMoney className="mr-4" />₹{hotel.pricePerNight*30}
               </div>
               <div className="border border-slate-300 rounded-sm p-3 flex items-center" style={{ fontFamily: "Segoe UI" }}>
                 <BiArea className="mr-4" />
