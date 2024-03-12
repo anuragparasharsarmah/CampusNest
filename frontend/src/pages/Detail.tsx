@@ -64,7 +64,7 @@ const Detail = () => {
         <div className="whitespace-pre-line">{hotel.description}</div>
         <div className="h-fit">
           <GuestInfoForm
-            pricePerNight={hotel.pricePerNight}
+            pricePerNight={hotel.pricePerNight*30}
             hotelId={hotel._id}
           />
         </div>
