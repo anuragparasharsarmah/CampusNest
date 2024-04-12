@@ -40,20 +40,35 @@ const Register = () => {
   });
 
   return (
-    <form className="flex flex-col gap-5 max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg boxs" onSubmit={onSubmit}>
+    <form
+      className="flex flex-col gap-5 max-w-lg mx-auto p-6 bg-white rounded-lg shadow-lg boxs"
+      onSubmit={onSubmit}
+    >
       <h2 className="text-3xl font-bold text-center">Create an Account</h2>
       <div className="flex flex-col md:flex-row gap-5">
         <div className="flex flex-col flex-1">
-          <label htmlFor="firstName" className="text-gray-700 text-sm font-bold">
+          <label
+            htmlFor="firstName"
+            className="text-gray-700 text-sm font-bold"
+          >
             First Name
           </label>
           <input
             id="firstName"
             className="border rounded py-2 px-3 focus:outline-none"
-            {...register("firstName", { required: "This field is required" })}
+            {...register("firstName", {
+              required: "This field is required",
+              pattern: {
+                value: /^[a-zA-Z\-']+$/,
+                message:
+                  "First name can only contain letters, hyphens, and apostrophes",
+              },
+            })}
           />
           {errors.firstName && (
-            <span className="text-red-500 text-sm">{errors.firstName.message}</span>
+            <span className="text-red-500 text-sm">
+              {errors.firstName.message}
+            </span>
           )}
         </div>
         <div className="flex flex-col flex-1">
@@ -63,10 +78,19 @@ const Register = () => {
           <input
             id="lastName"
             className="border rounded py-2 px-3 focus:outline-none"
-            {...register("lastName", { required: "This field is required" })}
+            {...register("lastName", {
+              required: "This field is required",
+              pattern: {
+                value: /^[a-zA-Z\-']+$/,
+                message:
+                  "Last name can only contain letters, hyphens, and apostrophes",
+              },
+            })}
           />
           {errors.lastName && (
-            <span className="text-red-500 text-sm">{errors.lastName.message}</span>
+            <span className="text-red-500 text-sm">
+              {errors.lastName.message}
+            </span>
           )}
         </div>
       </div>
@@ -78,7 +102,13 @@ const Register = () => {
           id="email"
           type="email"
           className="border rounded py-2 px-3 focus:outline-none"
-          {...register("email", { required: "This field is required" })}
+          {...register("email", {
+            required: "This field is required",
+            pattern: {
+              value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              message: "Please enter a valid email address",
+            },
+          })}
         />
         {errors.email && (
           <span className="text-red-500 text-sm">{errors.email.message}</span>
@@ -95,17 +125,29 @@ const Register = () => {
           {...register("password", {
             required: "This field is required",
             minLength: {
-              value: 6,
+              value: 8,
               message: "Password must be at least 6 characters",
+            },
+            pattern: {
+              value:
+                /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/,
+              message:
+                "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
             },
           })}
         />
+
         {errors.password && (
-          <span className="text-red-500 text-sm">{errors.password.message}</span>
+          <span className="text-red-500 text-sm">
+            {errors.password.message}
+          </span>
         )}
       </div>
       <div className="flex flex-col gap-2">
-        <label htmlFor="confirmPassword" className="text-gray-700 text-sm font-bold">
+        <label
+          htmlFor="confirmPassword"
+          className="text-gray-700 text-sm font-bold"
+        >
           Confirm Password
         </label>
         <input
@@ -123,7 +165,9 @@ const Register = () => {
           })}
         />
         {errors.confirmPassword && (
-          <span className="text-red-500 text-sm">{errors.confirmPassword.message}</span>
+          <span className="text-red-500 text-sm">
+            {errors.confirmPassword.message}
+          </span>
         )}
       </div>
       <button
@@ -133,7 +177,6 @@ const Register = () => {
         Create Account
       </button>
     </form>
-
   );
 };
 

@@ -1,0 +1,26 @@
+[
+    {
+        "test_case": "Correct User",
+        "data": {
+            "email": "john.doe@example.com",
+            "password": "Password123!"
+        },
+        "expected_result": "Successful Login"
+    },
+    {
+        "test_case": "Incorrect Email",
+        "data": {
+            "email": "invalid_email",
+            "password": "Password123!"
+        },
+        "expected_result": "Failed Login"
+    },
+    {
+        "test_case": "Incorrect Password",
+        "data": {
+            "email": "john.doe@example.com",
+            "password": "IncorrectPassword"
+        },
+        "expected_result": "Failed Login"
+    }
+]

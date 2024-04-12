@@ -1,0 +1,178 @@
+[
+  {
+      "test_case": "Valid input",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Successful SignUp"
+  },
+  {
+      "test_case": "Existing User",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Missing First Name",
+      "data": {
+          "firstname": "",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Missing Last Name",
+      "data": {
+          "firstname": "John",
+          "lastname": "",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Missing Email",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Missing Password",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Missing Confirm Password",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": ""
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Invalid Email",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "invalid_email",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Weak Password (less than 8 characters)",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "weak",
+          "confirmPassword": "weak"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Weak Password (no uppercase letter)",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "password123",
+          "confirmPassword": "password123"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Weak Password (no lowercase letter)",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "PASSWORD123",
+          "confirmPassword": "PASSWORD123"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Weak Password (no digit)",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "Password",
+          "confirmPassword": "Password"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Mismatched Passwords",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": "Password456!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Special Characters in First Name",
+      "data": {
+          "firstname": "J#hn",
+          "lastname": "Doe",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Special Characters in Last Name",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe@",
+          "email": "john.doe@example.com",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  },
+  {
+      "test_case": "Special Characters in Email",
+      "data": {
+          "firstname": "John",
+          "lastname": "Doe",
+          "email": "john.doe@example.com!",
+          "password": "Password123!",
+          "confirmPassword": "Password123!"
+      },
+      "expected_result": "Failed SignUp"
+  }
+]
