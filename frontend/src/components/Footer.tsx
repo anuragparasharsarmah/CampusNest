@@ -1,4 +1,4 @@
-import video from "../../../../../HeaderVideo.mp4"; // Import your video file
+import video from "../../../SPD=video2.mp4"; // Import your video file
 import { FaFacebook, FaTwitter, FaDribbble, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {

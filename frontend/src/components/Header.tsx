@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAppContext } from "../contexts/AppContext";
 import SignOutButton from "./SignOutButton";
-import video from "../../../../../SPD=video2.mp4"; 
+import video from "../../../SPD=video2.mp4"; 
 import { useRef } from "react";
 import Typed from "typed.js";
 
