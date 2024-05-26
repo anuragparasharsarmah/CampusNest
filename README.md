@@ -4,6 +4,8 @@ This guide will walk you through the process of setting up CampusNest on your lo
 
 ## Project Demo
 
+https://github.com/anuragparasharsarmah/CampusNest/assets/141404296/2baa3771-70c1-4c9e-8b0a-401f80c64589
+
 ## Prerequisites
 
 Before you begin, ensure you have Node.js installed on your system.
