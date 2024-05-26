@@ -1,6 +1,8 @@
-#CampusNest Setting Up
+## CampusNest Setup
 
 This guide will walk you through the process of setting up CampusNest on your local machine.
+
+## Project Demo
 
 ## Prerequisites
 
